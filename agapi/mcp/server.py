@@ -32,7 +32,11 @@ from typing import Any, Callable
 import anyio
 from mcp.server.fastmcp import FastMCP
 from mcp.server.fastmcp.tools.base import Tool
-from mcp.server.fastmcp.utilities.func_metadata import ArgModelBase, FuncMetadata
+from mcp.server.fastmcp.utilities.func_metadata import (
+    ArgModelBase,
+    FuncMetadata,
+)
+
 # ─── reuse everything from agapi ─────────────────────────────────────────────
 import agapi
 from agapi.agents import functions as agapi_functions
@@ -40,6 +44,7 @@ from agapi.agents.client import AGAPIClient
 from agapi.agents.config import AgentConfig
 from agapi.agents.schema import TOOLS_SCHEMA
 from agapi.agents.agent import SYSTEM_PROMPT
+
 # Near the top of the file, after imports
 from contextvars import ContextVar
 
@@ -51,15 +56,17 @@ _request_client: ContextVar[AGAPIClient | None] = ContextVar(
 )
 
 # ─── config ──────────────────────────────────────────────────────────────────
-API_KEY = os.environ.get("AGAPI_KEY") #or AgentConfig.DEFAULT_API_KEY
-#print("API_KEY",API_KEY)
+API_KEY = os.environ.get("AGAPI_KEY")  # or AgentConfig.DEFAULT_API_KEY
+# print("API_KEY",API_KEY)
 API_BASE = os.environ.get("AGAPI_BASE") or AgentConfig.API_BASE
-#print("API_BASE",API_BASE)
+# print("API_BASE",API_BASE)
 TIMEOUT = int(os.environ.get("AGAPI_TIMEOUT", AgentConfig.DEFAULT_TIMEOUT))
 
 # Single shared AGAPI client, injected into every call as `api_client=...`
 # (matches the contract in AGAPIAgent._execute_function)
-_agapi_client = AGAPIClient(api_key=API_KEY, api_base=API_BASE, timeout=TIMEOUT)
+_agapi_client = AGAPIClient(
+    api_key=API_KEY, api_base=API_BASE, timeout=TIMEOUT
+)
 
 # ─── MCP server ──────────────────────────────────────────────────────────────
 # AGAPI's SYSTEM_PROMPT becomes the MCP server `instructions`. Claude surfaces
@@ -106,17 +113,34 @@ _SCHEMA_BY_NAME: dict[str, dict] = {
 
 _MAX_RESULT_CHARS = 20_000
 _PRIORITY_KEYS = (
-    "status", "message", "error",
-    "formula", "jid", "num_atoms",
-    "band_gap_eV", "vbm_eV", "cbm_eV",
-    "relaxed_poscar", "modified_poscar", "supercell_poscar", "poscar",
-    "peaks", "num_peaks_found", "num_peaks_reported",
-    "description", "wavelength",
+    "status",
+    "message",
+    "error",
+    "formula",
+    "jid",
+    "num_atoms",
+    "band_gap_eV",
+    "vbm_eV",
+    "cbm_eV",
+    "relaxed_poscar",
+    "modified_poscar",
+    "supercell_poscar",
+    "poscar",
+    "peaks",
+    "num_peaks_found",
+    "num_peaks_reported",
+    "description",
+    "wavelength",
     "pdb_structure",
-    "materials", "results", "total",
+    "materials",
+    "results",
+    "total",
 )
 _POSCAR_KEYS = (
-    "relaxed_poscar", "modified_poscar", "supercell_poscar", "poscar",
+    "relaxed_poscar",
+    "modified_poscar",
+    "supercell_poscar",
+    "poscar",
 )
 
 
@@ -136,16 +160,28 @@ def _shrink(result: Any) -> Any:
     if len(raw) <= _MAX_RESULT_CHARS:
         if "image_base64" in result:
             # base64 PNGs waste tokens with no benefit in chat
-            result = {**result, "image_base64": "<omitted — view on atomgpt.org>"}
+            result = {
+                **result,
+                "image_base64": "<omitted — view on atomgpt.org>",
+            }
         return result
 
-    shrunk: dict[str, Any] = {k: result[k] for k in _PRIORITY_KEYS if k in result}
+    shrunk: dict[str, Any] = {
+        k: result[k] for k in _PRIORITY_KEYS if k in result
+    }
 
     for k in _POSCAR_KEYS:
-        if k in shrunk and isinstance(shrunk[k], str) and len(shrunk[k]) > 2000:
+        if (
+            k in shrunk
+            and isinstance(shrunk[k], str)
+            and len(shrunk[k]) > 2000
+        ):
             shrunk[k] = _truncate_poscar(shrunk[k])
 
-    if isinstance(shrunk.get("materials"), list) and len(shrunk["materials"]) > 25:
+    if (
+        isinstance(shrunk.get("materials"), list)
+        and len(shrunk["materials"]) > 25
+    ):
         full = shrunk["materials"]
         shrunk["materials"] = full[:25]
         shrunk["_note"] = (
@@ -169,6 +205,7 @@ def _shrink(result: Any) -> Any:
 # client (Claude). JSON-schema validation happens on the client side before
 # the request ever reaches us. So we bypass server-side pydantic validation
 # entirely and pass the raw dict straight through to the AGAPI function.
+
 
 class _PassthroughArgs(ArgModelBase):
     """Stand-in for the pydantic arg-model FastMCP normally builds.
@@ -222,8 +259,9 @@ def _make_mcp_handler(func: Callable, name: str) -> Callable:
     We run them in a worker thread via anyio so the MCP event loop stays
     responsive and other tool calls can proceed concurrently.
     """
+
     async def handler(**kwargs: Any) -> dict[str, Any]:
-        #kwargs["api_client"] = _agapi_client
+        # kwargs["api_client"] = _agapi_client
         kwargs["api_client"] = _request_client.get() or _agapi_client
         try:
             result = await anyio.to_thread.run_sync(lambda: func(**kwargs))
@@ -284,7 +322,24 @@ print(
 # ─── entry points ────────────────────────────────────────────────────────────
 # Remote connector (Claude web / mobile):  uvicorn agapi.mcp.server:app --port 8765
 # Local stdio (Claude Desktop):             python -m agapi.mcp
+#
+# Serve the JSON-RPC endpoint at the app root ("/"). When this app is mounted
+# at /mcp by OpenWebUI, the final public URL is atomgpt.org/mcp (not /mcp/mcp).
+mcp.settings.streamable_http_path = "/"
 app = mcp.streamable_http_app()
+
+# Older FastMCP versions ignore `mcp.settings.streamable_http_path` and leave
+# the streamable_http endpoint at `/mcp`. When this app is mounted under
+# `/mcp` by OpenWebUI, that places the real endpoint at `/mcp/mcp`. Patch the
+# route in-place so it always serves at `/`, regardless of FastMCP version.
+import re as _re
+
+for _r in app.routes:
+    if getattr(_r, "path", None) == "/mcp":
+        _r.path = "/"
+        _r.path_regex = _re.compile("^/$")
+        _r.path_format = "/"
+        break
 
 if __name__ == "__main__":
     mcp.run()
