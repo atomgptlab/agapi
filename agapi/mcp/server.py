@@ -103,32 +103,17 @@ mcp.settings.transport_security = _TSS(
     ],
 )
 
-# ─── function registry ───────────────────────────────────────────────────────
-# Mirrors AGAPIAgent._execute_function exactly. Explicit (not dir()-based) so
-# internal helpers added to functions.py never leak out as tools.
-FUNCTION_REGISTRY: dict[str, Callable] = {
-    "query_by_formula": agapi_functions.query_by_formula,
-    "query_by_elements": agapi_functions.query_by_elements,
-    "query_by_jid": agapi_functions.query_by_jid,
-    "query_by_property": agapi_functions.query_by_property,
-    "find_extreme": agapi_functions.find_extreme,
-    "alignn_predict": agapi_functions.alignn_predict,
-    "alignn_ff_relax": agapi_functions.alignn_ff_relax,
-    "slakonet_bandstructure": agapi_functions.slakonet_bandstructure,
-    "diffractgpt_predict": agapi_functions.diffractgpt_predict,
-    "xrd_match": agapi_functions.xrd_match,
-    "generate_xrd_pattern": agapi_functions.generate_xrd_pattern,
-    "generate_interface": agapi_functions.generate_interface,
-    "make_supercell": agapi_functions.make_supercell,
-    "substitute_atom": agapi_functions.substitute_atom,
-    "create_vacancy": agapi_functions.create_vacancy,
-    "protein_fold": agapi_functions.protein_fold,
-}
+# ─── tool source-of-truth ────────────────────────────────────────────────────
+# All MCP-exposed tools are declared in agapi.tools.manifest. Adding a new
+# tool means appending one Tool(...) entry there — no edits here, in
+# functions.py, or in the schema file are required for MCP registration.
+from agapi.tools import for_surface as _tools_for_surface
 
-# Index AGAPI's OpenAI-format schemas by function name.
-# TOOLS_SCHEMA items look like:
-#   {"type": "function",
-#    "function": {"name": ..., "description": ..., "parameters": {...}}}
+# FUNCTION_REGISTRY and _SCHEMA_BY_NAME kept as module-level exports for
+# backwards compatibility with any external code that imported them.
+FUNCTION_REGISTRY: dict[str, Callable] = {
+    t.id: t.impl for t in _tools_for_surface("mcp") if t.impl is not None
+}
 _SCHEMA_BY_NAME: dict[str, dict] = {
     item["function"]["name"]: item["function"] for item in TOOLS_SCHEMA
 }
@@ -307,16 +292,28 @@ def _make_mcp_handler(func: Callable, name: str) -> Callable:
 
 # ─── tool registration ───────────────────────────────────────────────────────
 def _register_all_tools() -> list[str]:
-    """Build and register one Tool per AGAPI function.
+    """Build and register one MCP tool per manifest entry.
 
     We build Tool objects directly instead of using mcp.add_tool() so we can
-    inject our passthrough FuncMetadata. The authoritative schema comes from
-    AGAPI's TOOLS_SCHEMA — never from Python signature introspection.
+    inject our passthrough FuncMetadata. Parameters come from the manifest
+    (which itself proxies to TOOLS_SCHEMA today) — never from Python signature
+    introspection.
     """
     registered: list[str] = []
-    for name, func in FUNCTION_REGISTRY.items():
-        spec = _SCHEMA_BY_NAME.get(name)
-        if spec is None:
+    for tool_def in _tools_for_surface("mcp"):
+        if tool_def.impl is None:
+            print(f"⚠ skipping {tool_def.id}: no impl in manifest")
+            continue
+        name = tool_def.id
+        func = tool_def.impl
+        # Use manifest description+parameters (falling back to TOOLS_SCHEMA via
+        # the manifest's _params_for/_desc_for helpers).
+        spec = {
+            "name": name,
+            "description": tool_def.description or _SCHEMA_BY_NAME.get(name, {}).get("description", ""),
+            "parameters": tool_def.parameters or _SCHEMA_BY_NAME.get(name, {}).get("parameters", {"type": "object", "properties": {}}),
+        }
+        if not spec["parameters"]:
             print(f"⚠ skipping {name}: not in TOOLS_SCHEMA")
             continue
 
