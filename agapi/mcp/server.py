@@ -74,6 +74,35 @@ _agapi_client = AGAPIClient(
 # AGAPIAgent depends on flows through to Claude automatically.
 mcp = FastMCP(name="atomgpt", instructions=SYSTEM_PROMPT)
 
+# Configure DNS-rebinding protection for the streamable_http transport.
+# When this app is mounted behind cloudflared at atomgpt.org, the inbound
+# Host header is "atomgpt.org" — without this allowlist, FastMCP's
+# transport_security middleware rejects it with 421 "Invalid Host header".
+# Bearer-token auth in the parent middleware already gates the endpoint, so
+# this is purely about teaching MCP which Host values to accept.
+from mcp.server.transport_security import TransportSecuritySettings as _TSS
+mcp.settings.transport_security = _TSS(
+    enable_dns_rebinding_protection=True,
+    allowed_hosts=[
+        "atomgpt.org",
+        "www.atomgpt.org",
+        "127.0.0.1",
+        "127.0.0.1:8080",
+        "127.0.0.1:8765",
+        "localhost",
+        "localhost:8080",
+        "localhost:8765",
+    ],
+    allowed_origins=[
+        "https://atomgpt.org",
+        "https://www.atomgpt.org",
+        "http://localhost:8080",
+        "http://127.0.0.1:8080",
+        "http://localhost:8765",
+        "http://127.0.0.1:8765",
+    ],
+)
+
 # ─── function registry ───────────────────────────────────────────────────────
 # Mirrors AGAPIAgent._execute_function exactly. Explicit (not dir()-based) so
 # internal helpers added to functions.py never leak out as tools.
