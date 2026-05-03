@@ -33,16 +33,22 @@ class AGAPIClient:
         import httpx
 
         url = f"{self.api_base}/{endpoint}"
-        headers = {}
+        # Send the API key as both a Bearer header AND an APIKEY query param.
+        # Header form satisfies routes that go through OpenWebUI's standard
+        # `get_current_user` auth (which is also what API-key endpoint
+        # restrictions gate against — Bearer-authenticated requests don't
+        # trigger the APIKEY-allowlist check). Query-param form preserves
+        # backwards compatibility with any AGAPI route that still expects
+        # ?APIKEY=. Sending both is harmless when one is ignored.
+        headers = {"Authorization": f"Bearer {self.api_key}"}
 
-        # Add API key to params (not headers) for AGAPI
         if params is None:
             params = {}
-        params["APIKEY"] = self.api_key
+        params.setdefault("APIKEY", self.api_key)
 
         try:
             if method == "GET":
-                response = httpx.get(url, params=params, timeout=self.timeout)
+                response = httpx.get(url, params=params, headers=headers, timeout=self.timeout)
             else:
                 response = httpx.post(
                     url, json=params, headers=headers, timeout=self.timeout
