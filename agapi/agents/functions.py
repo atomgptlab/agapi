@@ -1146,6 +1146,84 @@ def alignn_ff_md(
 
 
 # ---------------------------------------------------------------------------
+# Battery Explorer: voltage profile + theoretical capacity
+# ---------------------------------------------------------------------------
+# Note: like the other POST functions in this file, errors are detected only
+# via HTTP status codes. The battery endpoint also returns a "success" boolean
+# in the response body — a False value with HTTP 200 will not be caught here.
+
+
+def battery_predict(
+    poscar: str,
+    element: str = "Li",
+    model: str = "default",
+    *,
+    api_client: AGAPIClient = None,
+) -> Dict[str, Any]:
+    """
+    Predict battery cathode voltage profile and theoretical capacity using
+    ALIGNN force-field. Sequentially removes intercalating ions from a
+    supercell, computes energy at each step, and builds a voltage vs.
+    ion-fraction curve.
+
+    Endpoint: POST /battery/predict
+
+    Args:
+        poscar: VASP POSCAR string of the cathode structure. Must contain
+                the intercalating ion.
+        element: Intercalating ion — "Li", "Na", "K", "Mg", "Ca", or "Zn"
+                 (default "Li")
+        model: ALIGNN-FF model — "default" or "wt01" (default "default")
+        api_client: API client instance (injected by agent)
+
+    Returns:
+        dict with formula, element, spacegroup, n_steps, compositions,
+        voltages, energies, gravimetric_capacity, volumetric_capacity,
+        density, molar_mass, charge, and result_text
+    """
+    try:
+        import httpx
+
+        response = httpx.post(
+            f"{api_client.api_base}/battery/predict",
+            json={
+                "poscar": poscar,
+                "element": element,
+                "model": model,
+            },
+            headers={"Authorization": f"Bearer {api_client.api_key}"},
+            timeout=api_client.timeout,
+        )
+        response.raise_for_status()
+        result = response.json()
+
+        return {
+            "status": "success",
+            "formula": result.get("formula"),
+            "element": result.get("element", element),
+            "spacegroup": result.get("spacegroup"),
+            "n_steps": result.get("n_steps"),
+            "compositions": result.get("compositions", []),
+            "voltages": result.get("voltages", []),
+            "energies": result.get("energies", []),
+            "gravimetric_capacity": result.get("gravimetric_capacity"),
+            "volumetric_capacity": result.get("volumetric_capacity"),
+            "density": result.get("density"),
+            "molar_mass": result.get("molar_mass"),
+            "charge": result.get("charge"),
+            "result_text": result.get("result_text"),
+        }
+
+    except httpx.HTTPStatusError as e:
+        return {
+            "error": f"Battery prediction failed: {e.response.status_code}",
+            "detail": e.response.text,
+        }
+    except Exception as e:
+        return {"error": f"Battery prediction error: {str(e)}"}
+
+
+# ---------------------------------------------------------------------------
 # PXRD: match experimental pattern against JARVIS-DFT
 # ---------------------------------------------------------------------------
 
