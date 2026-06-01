@@ -823,4 +823,42 @@ TOOLS_SCHEMA = [
             },
         },
     },
+    # -------------------------------------------------------------------------
+    # Battery cathode prediction (ALIGNN-FF)
+    # -------------------------------------------------------------------------
+    {
+        "type": "function",
+        "function": {
+            "name": "battery_predict",
+            "description": (
+                "Predict battery cathode voltage profile and theoretical capacity "
+                "for an intercalation electrode. Sequentially removes the intercalating "
+                "ion from a supercell, computes energy at each step with ALIGNN-FF, "
+                "and builds a voltage vs. ion-fraction curve. Returns voltages, "
+                "gravimetric and volumetric capacities, density, molar mass, and "
+                "energies at each composition step. The input POSCAR must already "
+                "contain the intercalating ion (e.g. LiCoO2 for Li-ion)."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "poscar": {
+                        "type": "string",
+                        "description": "VASP POSCAR string of the cathode structure (must contain the intercalating ion).",
+                    },
+                    "element": {
+                        "type": "string",
+                        "description": "Intercalating ion: 'Li', 'Na', 'K', 'Mg', 'Ca', or 'Zn'.",
+                        "default": "Li",
+                    },
+                    "model": {
+                        "type": "string",
+                        "description": "ALIGNN-FF model variant: 'default' or 'wt01'.",
+                        "default": "default",
+                    },
+                },
+                "required": ["poscar"],
+            },
+        },
+    },
 ]

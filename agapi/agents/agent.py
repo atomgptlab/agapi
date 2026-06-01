@@ -24,6 +24,7 @@ from .functions import (
     substitute_atom,
     create_vacancy,
     protein_fold,
+    battery_predict,
 )
 
 
@@ -960,6 +961,7 @@ class AGAPIAgent:
             "substitute_atom": substitute_atom,
             "create_vacancy": create_vacancy,
             "protein_fold": protein_fold,
+            "battery_predict": battery_predict,
         }
 
         func = functions.get(function_name)
