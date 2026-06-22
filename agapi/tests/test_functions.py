@@ -199,6 +199,31 @@ def test_battery_predict(client):
     assert isinstance(r.get("voltages"), list) and len(r["voltages"]) > 0
 
 
+def test_battery_predict_accepts_jid():
+    """The chat agent calls battery_predict(jid=...) (it holds a JARVIS jid, not a POSCAR).
+    That used to raise 'unexpected keyword argument jid'; now the jid is resolved to a POSCAR."""
+    fake_response = MagicMock()
+    fake_response.json.return_value = {
+        "success": True, "formula": "LiCoO2", "element": "Li",
+        "voltages": [4.1], "gravimetric_capacity": 137.0,
+    }
+    mock_client = MagicMock(api_base="https://atomgpt.org", api_key="sk-test", timeout=120.0)
+    with patch("agapi.agents.functions.query_by_jid",
+               return_value={"POSCAR": LICOO2_PRIM}) as mock_lookup, \
+            patch("httpx.post", return_value=fake_response) as mock_post:
+        r = battery_predict(jid="JVASP-2017", element="Li", api_client=mock_client)
+
+    mock_lookup.assert_called_once()                       # jid was resolved
+    assert mock_post.call_args.kwargs["json"]["poscar"] == LICOO2_PRIM  # resolved POSCAR sent
+    assert r["status"] == "success"
+
+
+def test_battery_predict_requires_poscar_or_jid():
+    """Neither poscar nor jid -> a clear error instead of a crash."""
+    r = battery_predict(api_client=MagicMock())
+    assert "error" in r and "poscar or jid" in r["error"].lower()
+
+
 # =====================================================================
 # BANDSTRUCTURE
 # =====================================================================

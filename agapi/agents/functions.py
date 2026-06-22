@@ -1154,9 +1154,10 @@ def alignn_ff_md(
 
 
 def battery_predict(
-    poscar: str,
+    poscar: str = None,
     element: str = "Li",
     model: str = "default",
+    jid: str = None,
     *,
     api_client: AGAPIClient = None,
 ) -> Dict[str, Any]:
@@ -1170,10 +1171,12 @@ def battery_predict(
 
     Args:
         poscar: VASP POSCAR string of the cathode structure. Must contain
-                the intercalating ion.
+                the intercalating ion. Optional if `jid` is given.
         element: Intercalating ion — "Li", "Na", "K", "Mg", "Ca", or "Zn"
                  (default "Li")
         model: ALIGNN-FF model — "default" or "wt01" (default "default")
+        jid: JARVIS-DFT id (e.g. "JVASP-2017"). If given instead of `poscar`,
+             the structure is looked up via query_by_jid and its POSCAR used.
         api_client: API client instance (injected by agent)
 
     Returns:
@@ -1183,6 +1186,25 @@ def battery_predict(
     """
     try:
         import httpx
+
+        # --- Why this accepts `jid` (chat-integration fix) ----------------------
+        # How the bug arose: in the chat flow the agent first identifies a material
+        # with query_by_formula / query_by_jid, so it is holding a JARVIS *jid*, not
+        # a POSCAR. It then calls battery_predict(jid=...). This function originally
+        # only accepted `poscar`, so that call raised
+        #   "battery_predict() got an unexpected keyword argument 'jid'".
+        # How it's fixed: accept `jid` and resolve it to a POSCAR here (same
+        # poscar-or-jid convention as alignn_predict). The /battery/predict backend
+        # still receives a POSCAR, so nothing downstream changes.
+        if not poscar and not jid:
+            return {"error": "Either poscar or jid must be provided"}
+        if not poscar:
+            jid_data = query_by_jid(jid, api_client=api_client)
+            if "error" in jid_data:
+                return {"error": f"Could not resolve jid {jid}: {jid_data['error']}"}
+            poscar = jid_data.get("POSCAR")
+            if not poscar:
+                return {"error": f"No POSCAR found for jid {jid}"}
 
         response = httpx.post(
             f"{api_client.api_base}/battery/predict",

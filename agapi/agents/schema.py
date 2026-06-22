@@ -836,15 +836,24 @@ TOOLS_SCHEMA = [
                 "ion from a supercell, computes energy at each step with ALIGNN-FF, "
                 "and builds a voltage vs. ion-fraction curve. Returns voltages, "
                 "gravimetric and volumetric capacities, density, molar mass, and "
-                "energies at each composition step. The input POSCAR must already "
-                "contain the intercalating ion (e.g. LiCoO2 for Li-ion)."
+                "energies at each composition step. The structure must already "
+                "contain the intercalating ion (e.g. LiCoO2 for Li-ion). "
+                "Provide EITHER a `poscar` string OR a JARVIS `jid` (e.g. JVASP-2017); "
+                "if you already have the material's jid from a query, pass it as `jid`."
             ),
+            # `jid` was added so the chat agent can call battery_predict with the JARVIS id it
+            # already holds (from query_by_formula/query_by_jid) instead of a POSCAR — passing a
+            # jid used to raise "unexpected keyword argument 'jid'". See functions.battery_predict.
             "parameters": {
                 "type": "object",
                 "properties": {
                     "poscar": {
                         "type": "string",
-                        "description": "VASP POSCAR string of the cathode structure (must contain the intercalating ion).",
+                        "description": "VASP POSCAR string of the cathode structure (must contain the intercalating ion). Optional if `jid` is given.",
+                    },
+                    "jid": {
+                        "type": "string",
+                        "description": "JARVIS-DFT id (e.g. 'JVASP-2017') to look up the structure. Use instead of `poscar`.",
                     },
                     "element": {
                         "type": "string",
@@ -857,7 +866,7 @@ TOOLS_SCHEMA = [
                         "default": "default",
                     },
                 },
-                "required": ["poscar"],
+                "required": [],
             },
         },
     },
