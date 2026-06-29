@@ -11,9 +11,9 @@ Run:
 
 import os
 import pytest
+from unittest.mock import patch, MagicMock
 from agapi.agents.client import AGAPIClient
 from agapi.agents.functions import *
-import pytest
 import time
 # pytest.skip("Temporarily disabled", allow_module_level=True)
 
@@ -63,6 +63,21 @@ SI_XRD = """\
 28.44 1.00
 47.30 0.55
 56.12 0.30
+"""
+
+LICOO2_PRIM = """\
+LiO2Co
+1.0
+2.719 -0.003 4.091
+1.234 2.423 4.091
+-0.004 -0.003 4.913
+Li Co O
+1 1 2
+Cartesian
+1.974 1.209 6.548
+0.0 0.0 0.0
+1.027 0.629 3.405
+2.922 1.789 9.690
 """
 
 
@@ -135,6 +150,79 @@ def test_alignn_ff_md(client):
     assert r.get("steps_completed") == 5
 
 """
+
+# =====================================================================
+# BATTERY
+# =====================================================================
+
+def test_battery_predict_field_mapping():
+    """Mock test: verifies response fields are mapped correctly without a live API call."""
+    fake_response = MagicMock()
+    fake_response.json.return_value = {
+        "success": True,
+        "formula": "LiCoO2",
+        "element": "Li",
+        "spacegroup": "R-3m",
+        "n_steps": 4,
+        "compositions": [0.0, 0.25, 0.5, 0.75, 1.0],
+        "voltages": [4.1, 3.9, 3.8, 3.7],
+        "energies": [-10.1, -9.8, -9.5, -9.1],
+        "gravimetric_capacity": 137.0,
+        "volumetric_capacity": 710.0,
+        "density": 5.18,
+        "molar_mass": 97.87,
+        "charge": 1,
+        "result_text": "LiCoO2 cathode summary...",
+    }
+
+    mock_client = MagicMock()
+    mock_client.api_base = "https://atomgpt.org"
+    mock_client.api_key = "sk-test"
+    mock_client.timeout = 120.0
+
+    with patch("httpx.post", return_value=fake_response) as mock_post:
+        r = battery_predict(LICOO2_PRIM, element="Li", api_client=mock_client)
+
+    mock_post.assert_called_once()
+    assert r["status"] == "success"
+    assert r["formula"] == "LiCoO2"
+    assert r["gravimetric_capacity"] == 137.0
+    assert r["voltages"] == [4.1, 3.9, 3.8, 3.7]
+    assert r["n_steps"] == 4
+
+
+def test_battery_predict(client):
+    time.sleep(4)
+    r = battery_predict(LICOO2_PRIM, element="Li", api_client=client)
+    assert r.get("status") == "success"
+    assert isinstance(r.get("gravimetric_capacity"), (int, float))
+    assert isinstance(r.get("voltages"), list) and len(r["voltages"]) > 0
+
+
+def test_battery_predict_accepts_jid():
+    """The chat agent calls battery_predict(jid=...) (it holds a JARVIS jid, not a POSCAR).
+    That used to raise 'unexpected keyword argument jid'; now the jid is resolved to a POSCAR."""
+    fake_response = MagicMock()
+    fake_response.json.return_value = {
+        "success": True, "formula": "LiCoO2", "element": "Li",
+        "voltages": [4.1], "gravimetric_capacity": 137.0,
+    }
+    mock_client = MagicMock(api_base="https://atomgpt.org", api_key="sk-test", timeout=120.0)
+    with patch("agapi.agents.functions.query_by_jid",
+               return_value={"POSCAR": LICOO2_PRIM}) as mock_lookup, \
+            patch("httpx.post", return_value=fake_response) as mock_post:
+        r = battery_predict(jid="JVASP-2017", element="Li", api_client=mock_client)
+
+    mock_lookup.assert_called_once()                       # jid was resolved
+    assert mock_post.call_args.kwargs["json"]["poscar"] == LICOO2_PRIM  # resolved POSCAR sent
+    assert r["status"] == "success"
+
+
+def test_battery_predict_requires_poscar_or_jid():
+    """Neither poscar nor jid -> a clear error instead of a crash."""
+    r = battery_predict(api_client=MagicMock())
+    assert "error" in r and "poscar or jid" in r["error"].lower()
+
 
 # =====================================================================
 # BANDSTRUCTURE

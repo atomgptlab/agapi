@@ -1146,6 +1146,106 @@ def alignn_ff_md(
 
 
 # ---------------------------------------------------------------------------
+# Battery Explorer: voltage profile + theoretical capacity
+# ---------------------------------------------------------------------------
+# Note: like the other POST functions in this file, errors are detected only
+# via HTTP status codes. The battery endpoint also returns a "success" boolean
+# in the response body — a False value with HTTP 200 will not be caught here.
+
+
+def battery_predict(
+    poscar: str = None,
+    element: str = "Li",
+    model: str = "default",
+    jid: str = None,
+    *,
+    api_client: AGAPIClient = None,
+) -> Dict[str, Any]:
+    """
+    Predict battery cathode voltage profile and theoretical capacity using
+    ALIGNN force-field. Sequentially removes intercalating ions from a
+    supercell, computes energy at each step, and builds a voltage vs.
+    ion-fraction curve.
+
+    Endpoint: POST /battery/predict
+
+    Args:
+        poscar: VASP POSCAR string of the cathode structure. Must contain
+                the intercalating ion. Optional if `jid` is given.
+        element: Intercalating ion — "Li", "Na", "K", "Mg", "Ca", or "Zn"
+                 (default "Li")
+        model: ALIGNN-FF model — "default" or "wt01" (default "default")
+        jid: JARVIS-DFT id (e.g. "JVASP-2017"). If given instead of `poscar`,
+             the structure is looked up via query_by_jid and its POSCAR used.
+        api_client: API client instance (injected by agent)
+
+    Returns:
+        dict with formula, element, spacegroup, n_steps, compositions,
+        voltages, energies, gravimetric_capacity, volumetric_capacity,
+        density, molar_mass, charge, and result_text
+    """
+    try:
+        import httpx
+
+        # --- Why this accepts `jid` (chat-integration fix) ----------------------
+        # How the bug arose: in the chat flow the agent first identifies a material
+        # with query_by_formula / query_by_jid, so it is holding a JARVIS *jid*, not
+        # a POSCAR. It then calls battery_predict(jid=...). This function originally
+        # only accepted `poscar`, so that call raised
+        #   "battery_predict() got an unexpected keyword argument 'jid'".
+        # How it's fixed: accept `jid` and resolve it to a POSCAR here (same
+        # poscar-or-jid convention as alignn_predict). The /battery/predict backend
+        # still receives a POSCAR, so nothing downstream changes.
+        if not poscar and not jid:
+            return {"error": "Either poscar or jid must be provided"}
+        if not poscar:
+            jid_data = query_by_jid(jid, api_client=api_client)
+            if "error" in jid_data:
+                return {"error": f"Could not resolve jid {jid}: {jid_data['error']}"}
+            poscar = jid_data.get("POSCAR")
+            if not poscar:
+                return {"error": f"No POSCAR found for jid {jid}"}
+
+        response = httpx.post(
+            f"{api_client.api_base}/battery/predict",
+            json={
+                "poscar": poscar,
+                "element": element,
+                "model": model,
+            },
+            headers={"Authorization": f"Bearer {api_client.api_key}"},
+            timeout=api_client.timeout,
+        )
+        response.raise_for_status()
+        result = response.json()
+
+        return {
+            "status": "success",
+            "formula": result.get("formula"),
+            "element": result.get("element", element),
+            "spacegroup": result.get("spacegroup"),
+            "n_steps": result.get("n_steps"),
+            "compositions": result.get("compositions", []),
+            "voltages": result.get("voltages", []),
+            "energies": result.get("energies", []),
+            "gravimetric_capacity": result.get("gravimetric_capacity"),
+            "volumetric_capacity": result.get("volumetric_capacity"),
+            "density": result.get("density"),
+            "molar_mass": result.get("molar_mass"),
+            "charge": result.get("charge"),
+            "result_text": result.get("result_text"),
+        }
+
+    except httpx.HTTPStatusError as e:
+        return {
+            "error": f"Battery prediction failed: {e.response.status_code}",
+            "detail": e.response.text,
+        }
+    except Exception as e:
+        return {"error": f"Battery prediction error: {str(e)}"}
+
+
+# ---------------------------------------------------------------------------
 # PXRD: match experimental pattern against JARVIS-DFT
 # ---------------------------------------------------------------------------
 
