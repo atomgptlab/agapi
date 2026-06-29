@@ -189,6 +189,18 @@ TOOLS: list[Tool] = [
         max_atoms=50,
         notes="Tight-binding overestimates bandgaps; prefer ALIGNN-MBJ.",
     ),
+    Tool(
+        id="battery_predict",
+        category="ml_predict",
+        title="Battery cathode voltage profile",
+        description=_desc_for("battery_predict"),
+        parameters=_params_for("battery_predict"),
+        http_method="post",
+        http_path="/battery/predict",
+        impl=agapi_functions.battery_predict,
+        timeout_class="slow",  # ⚠ sequential ALIGNN-FF energies; may exceed 45s
+        notes="Structure must contain the intercalating ion (e.g. LiCoO2). Pass jid or poscar.",
+    ),
 
     # ── Structure manipulation ──────────────────────────────────────────
     Tool(
