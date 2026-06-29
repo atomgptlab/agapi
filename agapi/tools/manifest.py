@@ -292,6 +292,18 @@ TOOLS: list[Tool] = [
 ]
 
 
+# ─── auto-generated app tools (scalable long-tail) ──────────────────────────
+# The curated tools above are hand-written, native Python impls. The app
+# endpoints below are *declared* in app_specs.py and rendered to Tools by
+# autogen.build_tools (each impl is a thin HTTP proxy to the existing FastAPI
+# route). Add more by appending an AppSpec there — or by auto-emitting specs
+# from the live FastAPI OpenAPI — with zero changes to this file or server.py.
+from agapi.tools.autogen import build_tools as _build_app_tools  # noqa: E402
+from agapi.tools.app_specs import APP_SPECS as _APP_SPECS  # noqa: E402
+
+TOOLS = TOOLS + _build_app_tools(_APP_SPECS)
+
+
 # ─── helpers used by every renderer ─────────────────────────────────────────
 
 _BY_ID: dict[str, Tool] = {t.id: t for t in TOOLS}

@@ -39,6 +39,17 @@ CATEGORIES: dict[str, dict] = {
         "description": "ESMFold protein structure prediction from amino acid sequence.",
         "order": 6,
     },
+    # ── auto-generated app categories (see app_specs.py) ────────────────────
+    "thermo": {
+        "label": "Thermodynamics",
+        "description": "Equation of state, phase stability, and thermodynamic properties.",
+        "order": 7,
+    },
+    "mechanical": {
+        "label": "Mechanical properties",
+        "description": "Elastic tensors, moduli, and mechanical-stability data.",
+        "order": 8,
+    },
 }
 
 
