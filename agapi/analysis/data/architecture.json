@@ -1,0 +1,40 @@
+{
+  "agent_tools": {
+    "value": 28,
+    "source": "live AST of agapi/agents/schema.py",
+    "verified": true
+  },
+  "rest_endpoints": {
+    "value": 18,
+    "source": "live AST of agapi/agents/functions.py (api_client.request paths + f-string URLs)",
+    "verified": true,
+    "verified_live_subset": 18,
+    "agapi_endpoints_in_code": [
+      "alignn/query",
+      "alignn_ff/md",
+      "alignn_ff/optimize",
+      "alignn_ff/query",
+      "arxiv",
+      "crossref",
+      "diffractgpt/query",
+      "generate_interface",
+      "jarvis_dft/columns",
+      "jarvis_dft/query",
+      "microscopy/predict",
+      "mp/query",
+      "openfold/query",
+      "oqmd/query",
+      "protein_fold/query",
+      "pxrd/query",
+      "slakonet/bandstructure",
+      "xrd/analyze"
+    ],
+    "live_server_reachable": true
+  },
+  "web_apps": {
+    "value": 49,
+    "source": "user manual verification at atomgpt.org/apps on 2026-05-23",
+    "verified": true,
+    "note": "bumped from 47 in earlier drafts after live count at /apps page"
+  }
+}

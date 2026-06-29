@@ -1,0 +1,1003 @@
+{
+  "Tc_supercon": {
+    "JVASP-816": {
+      "v_exp": 1.2,
+      "v_db": 1.599474453033944,
+      "v_db_error": null,
+      "v_agent": 1.599474453033944,
+      "agent_raw": "1.599474453033944 K",
+      "agent_elapsed_s": 4.82,
+      "ts": "2026-05-22T17:44:30"
+    },
+    "JVASP-1014": {
+      "v_exp": 4.5,
+      "v_db": 7.639509141414565,
+      "v_db_error": null,
+      "v_agent": 7.639509141414565,
+      "agent_raw": "7.639509141414565 K",
+      "agent_elapsed_s": 2.72,
+      "ts": "2026-05-22T17:46:37"
+    },
+    "JVASP-961": {
+      "v_exp": 7.2,
+      "v_db": 5.368996065282887,
+      "v_db_error": null,
+      "v_agent": 0.0,
+      "agent_raw": "0 K",
+      "agent_elapsed_s": 3.39,
+      "ts": "2026-05-22T17:46:41"
+    },
+    "JVASP-934": {
+      "v_exp": 9.3,
+      "v_db": 10.723349113267881,
+      "v_db_error": null,
+      "v_agent": 11.087153434753418,
+      "agent_raw": "11.087153434753418",
+      "agent_elapsed_s": 4.16,
+      "ts": "2026-05-22T17:46:45"
+    },
+    "JVASP-19679": {
+      "v_exp": 10.0,
+      "v_db": 9.735513975848821,
+      "v_db_error": null,
+      "v_agent": 2.66,
+      "agent_raw": "2.66 K",
+      "agent_elapsed_s": 5.04,
+      "ts": "2026-05-22T17:46:50"
+    },
+    "JVASP-14960": {
+      "v_exp": 17.0,
+      "v_db": 17.632942260132562,
+      "v_db_error": null,
+      "v_agent": 5.1,
+      "agent_raw": "5.10 K",
+      "agent_elapsed_s": 5.84,
+      "ts": "2026-05-22T17:46:56"
+    },
+    "JVASP-1151": {
+      "v_exp": 39.0,
+      "v_db": 32.685183166789905,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "N/A",
+      "agent_elapsed_s": 4.6,
+      "ts": "2026-05-22T17:47:01"
+    },
+    "JVASP-14837": {
+      "v_exp": 5.3,
+      "v_db": 18.25703088070881,
+      "v_db_error": null,
+      "v_agent": 19.16,
+      "agent_raw": "19.16\u202fK",
+      "agent_elapsed_s": 4.91,
+      "ts": "2026-05-22T17:47:06"
+    },
+    "JVASP-15938": {
+      "v_exp": 18.0,
+      "v_db": 16.501426785688462,
+      "v_db_error": null,
+      "v_agent": 15.574002265930176,
+      "agent_raw": "15.574002265930176",
+      "agent_elapsed_s": 4.45,
+      "ts": "2026-05-22T17:47:10"
+    },
+    "JVASP-14492": {
+      "v_exp": 1.38,
+      "v_db": 3.5934152180066476,
+      "v_db_error": null,
+      "v_agent": 4.021,
+      "agent_raw": "4.021 K",
+      "agent_elapsed_s": 5.85,
+      "ts": "2026-05-22T17:47:16"
+    },
+    "JVASP-19889": {
+      "v_exp": 12.0,
+      "v_db": 17.155451017952267,
+      "v_db_error": null,
+      "v_agent": 2.810182809829712,
+      "agent_raw": "2.810182809829712",
+      "agent_elapsed_s": 4.34,
+      "ts": "2026-05-22T17:47:21"
+    },
+    "JVASP-36335": {
+      "v_exp": 16.0,
+      "v_db": 17.565177796309943,
+      "v_db_error": null,
+      "v_agent": 17.928146362304688,
+      "agent_raw": "17.928146362304688",
+      "agent_elapsed_s": 4.47,
+      "ts": "2026-05-22T17:47:25"
+    },
+    "JVASP-20620": {
+      "v_exp": 7.2,
+      "v_db": 5.140066257310903,
+      "v_db_error": null,
+      "v_agent": 1.474855661392212,
+      "agent_raw": "1.474855661392212",
+      "agent_elapsed_s": 4.27,
+      "ts": "2026-05-22T17:47:30"
+    },
+    "JVASP-11981": {
+      "v_exp": 16.8,
+      "v_db": 8.956445797801175,
+      "v_db_error": null,
+      "v_agent": 9.312685012817383,
+      "agent_raw": "9.312685012817383",
+      "agent_elapsed_s": 4.38,
+      "ts": "2026-05-22T17:47:34"
+    }
+  },
+  "bulk_modulus": {
+    "JVASP-867": {
+      "v_exp": 142.0,
+      "v_db": 141.4,
+      "v_db_error": null,
+      "v_agent": 141.4,
+      "agent_raw": "141.4\u202fGPa",
+      "agent_elapsed_s": 1.07,
+      "ts": "2026-05-22T17:44:31"
+    },
+    "JVASP-91": {
+      "v_exp": 443.0,
+      "v_db": 437.4,
+      "v_db_error": null,
+      "v_agent": 437.4,
+      "agent_raw": "437.4\u202fGPa",
+      "agent_elapsed_s": 1.11,
+      "ts": "2026-05-22T17:46:07"
+    },
+    "JVASP-1002": {
+      "v_exp": 99.2,
+      "v_db": 87.27,
+      "v_db_error": null,
+      "v_agent": 87.27,
+      "agent_raw": "87.27 GPa",
+      "agent_elapsed_s": 1.12,
+      "ts": "2026-05-22T17:46:08"
+    },
+    "JVASP-890": {
+      "v_exp": 75.8,
+      "v_db": 58.07,
+      "v_db_error": null,
+      "v_agent": 58.07,
+      "agent_raw": "58.07\u202fGPa",
+      "agent_elapsed_s": 1.27,
+      "ts": "2026-05-22T17:46:09"
+    },
+    "JVASP-14606": {
+      "v_exp": 109.0,
+      "v_db": 100.27,
+      "v_db_error": null,
+      "v_agent": 100.27,
+      "agent_raw": "100.27\u202fGPa",
+      "agent_elapsed_s": 1.26,
+      "ts": "2026-05-22T17:46:11"
+    },
+    "JVASP-963": {
+      "v_exp": 195.0,
+      "v_db": 175.97,
+      "v_db_error": null,
+      "v_agent": 175.97,
+      "agent_raw": "175.97 GPa",
+      "agent_elapsed_s": 1.12,
+      "ts": "2026-05-22T17:46:12"
+    },
+    "JVASP-984": {
+      "v_exp": 269.0,
+      "v_db": 260.7,
+      "v_db_error": null,
+      "v_agent": 260.7,
+      "agent_raw": "260.7\u202fGPa",
+      "agent_elapsed_s": 1.21,
+      "ts": "2026-05-22T17:46:13"
+    },
+    "JVASP-25065": {
+      "v_exp": 13.3,
+      "v_db": 13.82,
+      "v_db_error": null,
+      "v_agent": 13.82,
+      "agent_raw": "13.82\u202fGPa",
+      "agent_elapsed_s": 1.16,
+      "ts": "2026-05-22T17:46:15"
+    },
+    "JVASP-25114": {
+      "v_exp": 3.7,
+      "v_db": 3.87,
+      "v_db_error": null,
+      "v_agent": 3.87,
+      "agent_raw": "3.87\u202fGPa",
+      "agent_elapsed_s": 1.28,
+      "ts": "2026-05-22T17:46:16"
+    },
+    "JVASP-14813": {
+      "v_exp": 2.9,
+      "v_db": 3.1,
+      "v_db_error": null,
+      "v_agent": 3.1,
+      "agent_raw": "3.1\u202fGPa",
+      "agent_elapsed_s": 1.31,
+      "ts": "2026-05-22T17:46:17"
+    },
+    "JVASP-25180": {
+      "v_exp": 18.4,
+      "v_db": 17.83,
+      "v_db_error": null,
+      "v_agent": 17.83,
+      "agent_raw": "17.83\u202fGPa",
+      "agent_elapsed_s": 1.41,
+      "ts": "2026-05-22T17:46:19"
+    },
+    "JVASP-21208": {
+      "v_exp": 12.4,
+      "v_db": 12.53,
+      "v_db_error": null,
+      "v_agent": 12.53,
+      "agent_raw": "12.53",
+      "agent_elapsed_s": 3.74,
+      "ts": "2026-05-22T17:46:23"
+    },
+    "JVASP-14604": {
+      "v_exp": 9.3,
+      "v_db": 9.87,
+      "v_db_error": null,
+      "v_agent": 9.87,
+      "agent_raw": "9.87\u202fGPa",
+      "agent_elapsed_s": 1.14,
+      "ts": "2026-05-22T17:46:24"
+    },
+    "JVASP-816": {
+      "v_exp": 79.4,
+      "v_db": 69.93,
+      "v_db_error": null,
+      "v_agent": 69.93,
+      "agent_raw": "69.93\u202fGPa",
+      "agent_elapsed_s": 1.09,
+      "ts": "2026-05-22T17:46:25"
+    },
+    "JVASP-1130": {
+      "v_exp": 69.8,
+      "v_db": 73.93,
+      "v_db_error": null,
+      "v_agent": 73.93,
+      "agent_raw": "73.93\u202fGPa",
+      "agent_elapsed_s": 1.1,
+      "ts": "2026-05-22T17:46:27"
+    },
+    "JVASP-23864": {
+      "v_exp": 35.4,
+      "v_db": 35.53,
+      "v_db_error": null,
+      "v_agent": 35.53,
+      "agent_raw": "35.53\u202fGPa",
+      "agent_elapsed_s": 1.16,
+      "ts": "2026-05-22T17:46:28"
+    },
+    "JVASP-23862": {
+      "v_exp": 26.6,
+      "v_db": 27.67,
+      "v_db_error": null,
+      "v_agent": 27.67,
+      "agent_raw": "27.67\u202fGPa",
+      "agent_elapsed_s": 1.2,
+      "ts": "2026-05-22T17:46:29"
+    },
+    "JVASP-20326": {
+      "v_exp": 51.4,
+      "v_db": 53.17,
+      "v_db_error": null,
+      "v_agent": 53.17,
+      "agent_raw": "53.17\u202fGPa",
+      "agent_elapsed_s": 1.31,
+      "ts": "2026-05-22T17:46:31"
+    },
+    "JVASP-116": {
+      "v_exp": 165.0,
+      "v_db": 160.67,
+      "v_db_error": null,
+      "v_agent": 160.67,
+      "agent_raw": "160.67\u202fGPa",
+      "agent_elapsed_s": 1.21,
+      "ts": "2026-05-22T17:46:32"
+    },
+    "JVASP-182": {
+      "v_exp": 225.0,
+      "v_db": 213.28,
+      "v_db_error": null,
+      "v_agent": 213.28,
+      "agent_raw": "213.28 GPa",
+      "agent_elapsed_s": 1.02,
+      "ts": "2026-05-22T17:46:33"
+    },
+    "JVASP-1174": {
+      "v_exp": 75.6,
+      "v_db": 61.93,
+      "v_db_error": null,
+      "v_agent": 61.93,
+      "agent_raw": "61.93\u202fGPa",
+      "agent_elapsed_s": 1.09,
+      "ts": "2026-05-22T17:46:34"
+    }
+  },
+  "bandgap": {
+    "JVASP-1002": {
+      "v_exp": 1.17,
+      "v_db": 1.277,
+      "v_db_error": null,
+      "v_agent": 1.277,
+      "agent_raw": "1.277 eV",
+      "agent_elapsed_s": 1.36,
+      "ts": "2026-05-22T17:44:53"
+    },
+    "JVASP-104": {
+      "v_exp": 3.4,
+      "v_db": 2.474,
+      "v_db_error": null,
+      "v_agent": 2.474,
+      "agent_raw": "2.474 eV",
+      "agent_elapsed_s": 1.24,
+      "ts": "2026-05-22T17:44:54"
+    },
+    "JVASP-113": {
+      "v_exp": 5.5,
+      "v_db": 4.213,
+      "v_db_error": null,
+      "v_agent": 4.213,
+      "agent_raw": "4.213 eV",
+      "agent_elapsed_s": 1.22,
+      "ts": "2026-05-22T17:44:56"
+    },
+    "JVASP-1130": {
+      "v_exp": 14.2,
+      "v_db": 11.219,
+      "v_db_error": null,
+      "v_agent": 11.219,
+      "agent_raw": "11.219 eV",
+      "agent_elapsed_s": 1.14,
+      "ts": "2026-05-22T17:44:57"
+    },
+    "JVASP-1145": {
+      "v_exp": 8.5,
+      "v_db": 8.409,
+      "v_db_error": null,
+      "v_agent": 8.409,
+      "agent_raw": "8.409\u202feV",
+      "agent_elapsed_s": 1.14,
+      "ts": "2026-05-22T17:44:58"
+    },
+    "JVASP-116": {
+      "v_exp": 7.83,
+      "v_db": 6.805,
+      "v_db_error": null,
+      "v_agent": 6.805,
+      "agent_raw": "6.805 eV",
+      "agent_elapsed_s": 1.08,
+      "ts": "2026-05-22T17:44:59"
+    },
+    "JVASP-1174": {
+      "v_exp": 1.52,
+      "v_db": 1.321,
+      "v_db_error": null,
+      "v_agent": 1.321,
+      "agent_raw": "1.321\u202feV",
+      "agent_elapsed_s": 1.25,
+      "ts": "2026-05-22T17:45:01"
+    },
+    "JVASP-1180": {
+      "v_exp": 0.72,
+      "v_db": 0.758,
+      "v_db_error": null,
+      "v_agent": 0.758,
+      "agent_raw": "0.758 eV",
+      "agent_elapsed_s": 1.12,
+      "ts": "2026-05-22T17:45:02"
+    },
+    "JVASP-1183": {
+      "v_exp": 1.42,
+      "v_db": 1.387,
+      "v_db_error": null,
+      "v_agent": 1.387,
+      "agent_raw": "1.387 eV",
+      "agent_elapsed_s": 1.23,
+      "ts": "2026-05-22T17:45:03"
+    },
+    "JVASP-1189": {
+      "v_exp": 0.24,
+      "v_db": 0.134,
+      "v_db_error": null,
+      "v_agent": 0.134,
+      "agent_raw": "0.134 eV",
+      "agent_elapsed_s": 1.08,
+      "ts": "2026-05-22T17:45:04"
+    },
+    "JVASP-1192": {
+      "v_exp": 1.85,
+      "v_db": 1.84,
+      "v_db_error": null,
+      "v_agent": 1.84,
+      "agent_raw": "1.84 eV",
+      "agent_elapsed_s": 1.13,
+      "ts": "2026-05-22T17:45:06"
+    },
+    "JVASP-1198": {
+      "v_exp": 2.39,
+      "v_db": 2.233,
+      "v_db_error": null,
+      "v_agent": 2.233,
+      "agent_raw": "2.233 eV",
+      "agent_elapsed_s": 1.2,
+      "ts": "2026-05-22T17:45:07"
+    },
+    "JVASP-1201": {
+      "v_exp": 3.4,
+      "v_db": 1.587,
+      "v_db_error": null,
+      "v_agent": 1.587,
+      "agent_raw": "1.587 eV",
+      "agent_elapsed_s": 1.14,
+      "ts": "2026-05-22T17:45:08"
+    },
+    "JVASP-1216": {
+      "v_exp": 2.17,
+      "v_db": null,
+      "v_db_error": "db_field_missing_or_na (mbj_bandgap)",
+      "v_agent": 0.644,
+      "agent_raw": "0.644 eV",
+      "agent_elapsed_s": 1.54,
+      "ts": "2026-05-22T17:45:10"
+    },
+    "JVASP-1267": {
+      "v_exp": 3.08,
+      "v_db": 2.148,
+      "v_db_error": null,
+      "v_agent": 2.148,
+      "agent_raw": "2.148 eV",
+      "agent_elapsed_s": 1.15,
+      "ts": "2026-05-22T17:45:11"
+    },
+    "JVASP-1294": {
+      "v_exp": 3.58,
+      "v_db": 2.851,
+      "v_db_error": null,
+      "v_agent": 2.851,
+      "agent_raw": "2.851 eV",
+      "agent_elapsed_s": 1.35,
+      "ts": "2026-05-22T17:45:13"
+    },
+    "JVASP-1300": {
+      "v_exp": 4.78,
+      "v_db": 4.276,
+      "v_db_error": null,
+      "v_agent": 4.276,
+      "agent_raw": "4.276 eV",
+      "agent_elapsed_s": 1.15,
+      "ts": "2026-05-22T17:45:14"
+    },
+    "JVASP-1312": {
+      "v_exp": 2.1,
+      "v_db": 1.914,
+      "v_db_error": null,
+      "v_agent": 1.914,
+      "agent_raw": "1.914 eV",
+      "agent_elapsed_s": 1.24,
+      "ts": "2026-05-22T17:45:15"
+    },
+    "JVASP-1315": {
+      "v_exp": 3.88,
+      "v_db": 3.279,
+      "v_db_error": null,
+      "v_agent": 3.279,
+      "agent_raw": "3.279 eV",
+      "agent_elapsed_s": 1.01,
+      "ts": "2026-05-22T17:45:16"
+    },
+    "JVASP-1327": {
+      "v_exp": 2.5,
+      "v_db": 2.563,
+      "v_db_error": null,
+      "v_agent": 2.563,
+      "agent_raw": "2.563 eV",
+      "agent_elapsed_s": 1.11,
+      "ts": "2026-05-22T17:45:18"
+    },
+    "JVASP-1393": {
+      "v_exp": 2.35,
+      "v_db": 2.373,
+      "v_db_error": null,
+      "v_agent": 2.373,
+      "agent_raw": "2.373 eV",
+      "agent_elapsed_s": 1.39,
+      "ts": "2026-05-22T17:45:19"
+    },
+    "JVASP-1405": {
+      "v_exp": 7.0,
+      "v_db": 5.29,
+      "v_db_error": null,
+      "v_agent": 5.29,
+      "agent_raw": "5.29 eV",
+      "agent_elapsed_s": 2.61,
+      "ts": "2026-05-22T17:45:22",
+      "v_db_note": "re-fetched 2026-05-22 after initial 429"
+    },
+    "JVASP-1408": {
+      "v_exp": 1.69,
+      "v_db": 1.777,
+      "v_db_error": null,
+      "v_agent": 1.777,
+      "agent_raw": "1.777 eV",
+      "agent_elapsed_s": 1.62,
+      "ts": "2026-05-22T17:45:23"
+    },
+    "JVASP-1453": {
+      "v_exp": 3.0,
+      "v_db": 2.062,
+      "v_db_error": null,
+      "v_agent": 2.062,
+      "agent_raw": "2.062 eV",
+      "agent_elapsed_s": 1.09,
+      "ts": "2026-05-22T17:45:25"
+    },
+    "JVASP-17": {
+      "v_exp": 6.2,
+      "v_db": 6.115,
+      "v_db_error": null,
+      "v_agent": 6.115,
+      "agent_raw": "6.115 eV",
+      "agent_elapsed_s": 1.15,
+      "ts": "2026-05-22T17:45:26"
+    },
+    "JVASP-1702": {
+      "v_exp": 3.84,
+      "v_db": 3.592,
+      "v_db_error": null,
+      "v_agent": 3.592,
+      "agent_raw": "3.592 eV",
+      "agent_elapsed_s": 1.11,
+      "ts": "2026-05-22T17:45:27"
+    },
+    "JVASP-1954": {
+      "v_exp": 3.25,
+      "v_db": 2.878,
+      "v_db_error": null,
+      "v_agent": 2.878,
+      "agent_raw": "2.878 eV",
+      "agent_elapsed_s": 1.24,
+      "ts": "2026-05-22T17:45:28"
+    },
+    "JVASP-23": {
+      "v_exp": 1.61,
+      "v_db": 1.64,
+      "v_db_error": null,
+      "v_agent": 1.64,
+      "agent_raw": "1.64 eV",
+      "agent_elapsed_s": 1.02,
+      "ts": "2026-05-22T17:45:30"
+    },
+    "JVASP-299": {
+      "v_exp": 0.9,
+      "v_db": 1.254,
+      "v_db_error": null,
+      "v_agent": 1.254,
+      "agent_raw": "1.254 eV",
+      "agent_elapsed_s": 1.14,
+      "ts": "2026-05-22T17:45:31"
+    },
+    "JVASP-30": {
+      "v_exp": 3.5,
+      "v_db": 3.084,
+      "v_db_error": null,
+      "v_agent": 3.084,
+      "agent_raw": "3.084 eV",
+      "agent_elapsed_s": 1.0,
+      "ts": "2026-05-22T17:45:32"
+    },
+    "JVASP-32": {
+      "v_exp": 8.8,
+      "v_db": 7.571,
+      "v_db_error": null,
+      "v_agent": 7.571,
+      "agent_raw": "7.571 eV",
+      "agent_elapsed_s": 1.53,
+      "ts": "2026-05-22T17:45:34"
+    },
+    "JVASP-39": {
+      "v_exp": 6.19,
+      "v_db": 5.197,
+      "v_db_error": null,
+      "v_agent": 5.197,
+      "agent_raw": "5.197 eV",
+      "agent_elapsed_s": 1.11,
+      "ts": "2026-05-22T17:45:35"
+    },
+    "JVASP-5": {
+      "v_exp": 3.3,
+      "v_db": 2.07,
+      "v_db_error": null,
+      "v_agent": 2.07,
+      "agent_raw": "2.07 eV",
+      "agent_elapsed_s": 1.1,
+      "ts": "2026-05-22T17:45:36"
+    },
+    "JVASP-54": {
+      "v_exp": 1.29,
+      "v_db": 1.337,
+      "v_db_error": null,
+      "v_agent": 1.337,
+      "agent_raw": "1.337 eV",
+      "agent_elapsed_s": 1.04,
+      "ts": "2026-05-22T17:45:37"
+    },
+    "JVASP-57": {
+      "v_exp": 1.11,
+      "v_db": 1.323,
+      "v_db_error": null,
+      "v_agent": 1.323,
+      "agent_raw": "1.323 eV",
+      "agent_elapsed_s": 1.21,
+      "ts": "2026-05-22T17:45:38"
+    },
+    "JVASP-72": {
+      "v_exp": 1.38,
+      "v_db": 1.514,
+      "v_db_error": null,
+      "v_agent": 1.514,
+      "agent_raw": "1.514 eV",
+      "agent_elapsed_s": 1.2,
+      "ts": "2026-05-22T17:45:40"
+    },
+    "JVASP-75": {
+      "v_exp": 1.23,
+      "v_db": 1.436,
+      "v_db_error": null,
+      "v_agent": 1.436,
+      "agent_raw": "1.436 eV",
+      "agent_elapsed_s": 1.12,
+      "ts": "2026-05-22T17:45:41"
+    },
+    "JVASP-7630": {
+      "v_exp": 1.46,
+      "v_db": 1.934,
+      "v_db_error": null,
+      "v_agent": 1.934,
+      "agent_raw": "1.934 eV",
+      "agent_elapsed_s": 1.11,
+      "ts": "2026-05-22T17:45:42"
+    },
+    "JVASP-7678": {
+      "v_exp": 2.47,
+      "v_db": 3.365,
+      "v_db_error": null,
+      "v_agent": 3.365,
+      "agent_raw": "3.365 eV",
+      "agent_elapsed_s": 1.21,
+      "ts": "2026-05-22T17:45:44"
+    },
+    "JVASP-7762": {
+      "v_exp": 3.6,
+      "v_db": 3.494,
+      "v_db_error": null,
+      "v_agent": 3.494,
+      "agent_raw": "3.494 eV",
+      "agent_elapsed_s": 1.11,
+      "ts": "2026-05-22T17:45:45"
+    },
+    "JVASP-7844": {
+      "v_exp": 4.9,
+      "v_db": 4.801,
+      "v_db_error": null,
+      "v_agent": 4.801,
+      "agent_raw": "4.801 eV",
+      "agent_elapsed_s": 1.0,
+      "ts": "2026-05-22T17:45:46"
+    },
+    "JVASP-7860": {
+      "v_exp": 0.36,
+      "v_db": 0.292,
+      "v_db_error": null,
+      "v_agent": 0.292,
+      "agent_raw": "0.292 eV",
+      "agent_elapsed_s": 1.2,
+      "ts": "2026-05-22T17:45:47"
+    },
+    "JVASP-8003": {
+      "v_exp": 2.5,
+      "v_db": 2.52,
+      "v_db_error": null,
+      "v_agent": 2.52,
+      "agent_raw": "2.52 eV",
+      "agent_elapsed_s": 1.23,
+      "ts": "2026-05-22T17:45:49"
+    },
+    "JVASP-8082": {
+      "v_exp": 3.3,
+      "v_db": 2.302,
+      "v_db_error": null,
+      "v_agent": 2.302,
+      "agent_raw": "2.302",
+      "agent_elapsed_s": 3.96,
+      "ts": "2026-05-22T17:45:53"
+    },
+    "JVASP-8158": {
+      "v_exp": 2.42,
+      "v_db": 2.308,
+      "v_db_error": null,
+      "v_agent": 2.308,
+      "agent_raw": "2.308\u202feV",
+      "agent_elapsed_s": 1.15,
+      "ts": "2026-05-22T17:45:54"
+    },
+    "JVASP-8169": {
+      "v_exp": 3.28,
+      "v_db": 2.903,
+      "v_db_error": null,
+      "v_agent": 2.903,
+      "agent_raw": "2.903 eV",
+      "agent_elapsed_s": 1.17,
+      "ts": "2026-05-22T17:45:55"
+    },
+    "JVASP-8566": {
+      "v_exp": 2.91,
+      "v_db": 2.089,
+      "v_db_error": null,
+      "v_agent": 2.089,
+      "agent_raw": "2.089 eV",
+      "agent_elapsed_s": 1.32,
+      "ts": "2026-05-22T17:45:57"
+    },
+    "JVASP-8583": {
+      "v_exp": 2.71,
+      "v_db": 2.516,
+      "v_db_error": null,
+      "v_agent": 2.516,
+      "agent_raw": "2.516 eV",
+      "agent_elapsed_s": 1.22,
+      "ts": "2026-05-22T17:45:58"
+    },
+    "JVASP-890": {
+      "v_exp": 0.74,
+      "v_db": 0.606,
+      "v_db_error": null,
+      "v_agent": 0.606,
+      "agent_raw": "0.606 eV",
+      "agent_elapsed_s": 1.12,
+      "ts": "2026-05-22T17:45:59"
+    },
+    "JVASP-91": {
+      "v_exp": 5.5,
+      "v_db": 5.035,
+      "v_db_error": null,
+      "v_agent": 5.035,
+      "agent_raw": "5.035 eV",
+      "agent_elapsed_s": 1.21,
+      "ts": "2026-05-22T17:46:01"
+    },
+    "JVASP-9147": {
+      "v_exp": 5.7,
+      "v_db": 5.664,
+      "v_db_error": null,
+      "v_agent": 5.664,
+      "agent_raw": "5.664 eV",
+      "agent_elapsed_s": 1.22,
+      "ts": "2026-05-22T17:46:02"
+    },
+    "JVASP-95": {
+      "v_exp": 2.5,
+      "v_db": 2.601,
+      "v_db_error": null,
+      "v_agent": 2.601,
+      "agent_raw": "2.601 eV",
+      "agent_elapsed_s": 1.1,
+      "ts": "2026-05-22T17:46:03"
+    },
+    "JVASP-96": {
+      "v_exp": 2.82,
+      "v_db": 2.63,
+      "v_db_error": null,
+      "v_agent": 2.63,
+      "agent_raw": "2.63 eV",
+      "agent_elapsed_s": 1.21,
+      "ts": "2026-05-22T17:46:04"
+    },
+    "JVASP-97": {
+      "v_exp": 0.42,
+      "v_db": 0.398,
+      "v_db_error": null,
+      "v_agent": 0.398,
+      "agent_raw": "0.398\u202feV",
+      "agent_elapsed_s": 1.01,
+      "ts": "2026-05-22T17:46:06"
+    }
+  },
+  "slme": {
+    "JVASP-1174": {
+      "v_exp": 29.7,
+      "v_db": 33.73,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "AGENT_ERROR: query_by_property() got an unexpected keyword argument 'jid'",
+      "agent_elapsed_s": 2.46,
+      "ts": "2026-05-22T17:47:37"
+    },
+    "JVASP-7757": {
+      "v_exp": 21.4,
+      "v_db": 28.18,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "N/A",
+      "agent_elapsed_s": 6.22,
+      "ts": "2026-05-22T17:47:43"
+    },
+    "JVASP-266": {
+      "v_exp": 24.7,
+      "v_db": 33.85,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "AGENT_ERROR: query_by_property() got an unexpected keyword argument 'jid'",
+      "agent_elapsed_s": 1.4,
+      "ts": "2026-05-22T17:47:45"
+    },
+    "JVASP-8544": {
+      "v_exp": 13.0,
+      "v_db": null,
+      "v_db_error": "db_field_missing_or_na (slme)",
+      "v_agent": null,
+      "agent_raw": "Error: SLME value for JVASP-8544 not found in the database.",
+      "agent_elapsed_s": 62.67,
+      "ts": "2026-05-22T17:48:47"
+    },
+    "JVASP-7112": {
+      "v_exp": 20.3,
+      "v_db": 20.82,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "N/A",
+      "agent_elapsed_s": 11.89,
+      "ts": "2026-05-22T17:48:59"
+    }
+  },
+  "epsx": {
+    "JVASP-54": {
+      "v_exp": 17.0,
+      "v_db": 16.1351,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "null",
+      "agent_elapsed_s": 14.78,
+      "ts": "2026-05-22T17:49:14"
+    },
+    "JVASP-57": {
+      "v_exp": 18.0,
+      "v_db": 17.4951,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "N/A",
+      "agent_elapsed_s": 3.33,
+      "ts": "2026-05-22T17:49:18"
+    },
+    "JVASP-60": {
+      "v_exp": 20.0,
+      "v_db": 20.7269,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "AGENT_ERROR: query_by_property() got an unexpected keyword argument 'formula'",
+      "agent_elapsed_s": 8.82,
+      "ts": "2026-05-22T17:49:27"
+    },
+    "JVASP-72": {
+      "v_exp": 11.5,
+      "v_db": 14.5933,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "N/A",
+      "agent_elapsed_s": 5.01,
+      "ts": "2026-05-22T17:49:32"
+    },
+    "JVASP-75": {
+      "v_exp": 11.7,
+      "v_db": 15.7868,
+      "v_db_error": null,
+      "v_agent": 15.7868,
+      "agent_raw": "15.7868",
+      "agent_elapsed_s": 6.38,
+      "ts": "2026-05-22T17:49:38"
+    },
+    "JVASP-182": {
+      "v_exp": 6.552,
+      "v_db": 6.9357,
+      "v_db_error": null,
+      "v_agent": 0.73,
+      "agent_raw": "0.73",
+      "agent_elapsed_s": 28.75,
+      "ts": "2026-05-22T17:50:07"
+    },
+    "JVASP-1327": {
+      "v_exp": 7.54,
+      "v_db": 8.6129,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "AGENT_ERROR: query_by_property() got an unexpected keyword argument 'jid'",
+      "agent_elapsed_s": 1.43,
+      "ts": "2026-05-22T17:50:09"
+    },
+    "JVASP-17": {
+      "v_exp": 5.06,
+      "v_db": 4.753,
+      "v_db_error": null,
+      "v_agent": 0.25,
+      "agent_raw": "0.25",
+      "agent_elapsed_s": 33.77,
+      "ts": "2026-05-22T17:50:43"
+    },
+    "JVASP-1312": {
+      "v_exp": 11.0,
+      "v_db": 9.1069,
+      "v_db_error": null,
+      "v_agent": 9.1069,
+      "agent_raw": "9.1069",
+      "agent_elapsed_s": 9.08,
+      "ts": "2026-05-22T17:50:52"
+    },
+    "JVASP-1393": {
+      "v_exp": 11.11,
+      "v_db": null,
+      "v_db_error": "db_request_error: API error (429): {\"detail\":\"Please wait 1.5s between queries.\"}",
+      "v_agent": null,
+      "agent_raw": "null",
+      "agent_elapsed_s": 12.01,
+      "ts": "2026-05-22T17:51:04"
+    },
+    "JVASP-1408": {
+      "v_exp": 12.04,
+      "v_db": 12.3767,
+      "v_db_error": null,
+      "v_agent": 12.3767,
+      "agent_raw": "12.3767",
+      "agent_elapsed_s": 5.85,
+      "ts": "2026-05-22T17:51:10"
+    },
+    "JVASP-1702": {
+      "v_exp": 8.0,
+      "v_db": 6.2494,
+      "v_db_error": null,
+      "v_agent": 6.2494,
+      "agent_raw": "6.2494",
+      "agent_elapsed_s": 7.51,
+      "ts": "2026-05-22T17:51:18"
+    },
+    "JVASP-23": {
+      "v_exp": 10.6,
+      "v_db": 13.5228,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "N/A",
+      "agent_elapsed_s": 9.34,
+      "ts": "2026-05-22T17:51:27"
+    },
+    "JVASP-8041": {
+      "v_exp": 20.0,
+      "v_db": 16.7749,
+      "v_db_error": null,
+      "v_agent": 16.7749,
+      "agent_raw": "16.7749",
+      "agent_elapsed_s": 9.41,
+      "ts": "2026-05-22T17:51:37"
+    },
+    "JVASP-2376": {
+      "v_exp": 11.15,
+      "v_db": 10.9793,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "N/A",
+      "agent_elapsed_s": 15.7,
+      "ts": "2026-05-22T17:51:52"
+    },
+    "JVASP-2355": {
+      "v_exp": 15.0,
+      "v_db": 13.407,
+      "v_db_error": null,
+      "v_agent": null,
+      "agent_raw": "N/A",
+      "agent_elapsed_s": 5.37,
+      "ts": "2026-05-22T17:51:58"
+    }
+  }
+}
