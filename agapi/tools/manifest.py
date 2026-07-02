@@ -84,7 +84,7 @@ class Tool:
 
 
 # ─── the catalog ────────────────────────────────────────────────────────────
-# 16 tools, mirroring agapi.mcp.server.FUNCTION_REGISTRY. Order here is the
+# 16 tools, matching TOOLS_SCHEMA / the agent tool set. Order here is the
 # order they appear in /connect and in the SYSTEM_PROMPT tool catalog.
 
 TOOLS: list[Tool] = [

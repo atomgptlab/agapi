@@ -34,7 +34,7 @@ class AGAPIClient:
 
         url = f"{self.api_base}/{endpoint}"
         # Send the API key as both a Bearer header AND an APIKEY query param.
-        # Header form satisfies routes that go through OpenWebUI's standard
+        # Header form satisfies routes that go through the AtomGPT gateway's standard
         # `get_current_user` auth (which is also what API-key endpoint
         # restrictions gate against — Bearer-authenticated requests don't
         # trigger the APIKEY-allowlist check). Query-param form preserves
