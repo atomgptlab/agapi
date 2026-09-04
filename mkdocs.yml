@@ -169,6 +169,7 @@ nav:
     - api/index.md
     - Python Client: api/python-client.md
     - REST Endpoints: api/rest-endpoints.md
+    - Chat Endpoint: api/chat-endpoint.md
     - AGAPI Agents: api/agents.md
     - OPTIMADE: api/optimade.md
   - Tutorials:
@@ -177,7 +178,6 @@ nav:
     - ML Property Prediction: tutorials/ml-prediction.md
     - ALIGNN-FF Molecular Dynamics: tutorials/alignn-ff-md.md
     - Quantum VQE for Solids: tutorials/quantum-vqe.md
-    - Building Custom Apps: tutorials/custom-apps.md
   - References:
     - references/index.md
     - Publications: references/publications.md

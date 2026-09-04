@@ -76,18 +76,18 @@ agent = AGAPIAgent(
 )
 ```
 
-| Provider | Model |
-|----------|-------|
-| OpenAI | `openai/gpt-oss-20b` |
-| OpenAI | `openai/gpt-oss-120b` |
-| Meta | `meta/llama-4-maverick-17b-128e-instruct` |
-| Meta | `meta/llama-3.2-90b-vision-instruct` |
-| Meta | `meta/llama-3.2-1b-instruct` |
-| Google | `google/gemini-2.5-flash` |
-| Google | `google/gemma-3-27b-it` |
-| DeepSeek | `deepseek-ai/deepseek-v3.1` |
-| Moonshot | `moonshotai/kimi-k2-instruct-0905` |
-| Qwen | `qwen/qwen3-next-80b-a3b-instruct` |
+| Model | Notes |
+|-------|-------|
+| `openai/gpt-oss-20b` | Default. Text only. |
+| `gemma-4-26b` | Vision-capable. |
+| `nvidia/nemotron-3-ultra-550b-a55b` | Largest; slowest per step. |
+| `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning` | Reasoning model. |
+
+The served set changes over time — `GET https://atomgpt.org/api/models` is
+authoritative. Don't point `model` at the `mcp.*` entries listed there: those
+already run the agent loop server-side, so using one as an orchestrator nests
+two agents. Reach those through the
+[chat endpoint](chat-endpoint.md) instead.
 
 ## Architecture
 
